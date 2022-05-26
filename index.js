@@ -3,6 +3,8 @@ const app = express()
 const port = 5000
 
 const bodyParser = require('body-parser')
+
+const config = require('./config/key')
 const { User } = require("./models/User")
 
 // 데이터를 분석해서 가져옴, application/x-www-form-urlencoded
@@ -12,14 +14,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://minhyeok:fb9147fb@boiler.fw55l.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
   // useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('MongoDb Connected..'))
 .catch(err => console.log('error'))
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! ++++')
 })
 
 
